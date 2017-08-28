@@ -5,7 +5,7 @@
     if ($_POST['username'] != "") {
       $_SESSION['name'] = $_POST['username'];
 
-      $fp = fopen("log.html", 'a');
+      $fp = fopen("chat.html", 'a');
       fwrite($fp, "<div class='msgln'><i><b>". $_SESSION['name'] ."</b> bergabung dengan chat.</i><br></div>");
       fclose($fp);
     }else{
@@ -16,13 +16,13 @@
   if (isset($_POST['msg'])) {
     $text = $_POST['msg'];
 
-    $fp = fopen("log.html", 'a');
+    $fp = fopen("chat.html", 'a');
     fwrite($fp, "<div'>(".date("g:i A").") <b>".$_SESSION['name']."</b>: ".stripslashes(htmlspecialchars($text))."<br></div>");
     fclose($fp);
   }
 
   if (isset($_GET['logout'])) {
-    $fp = fopen("log.html", 'a');
+    $fp = fopen("chat.html", 'a');
     fwrite($fp, "<div class='msgln'><i><b>". $_SESSION['name'] ."</b> meninggalkan chat.</i><br></div>");
     fclose($fp);
 
@@ -85,7 +85,7 @@
 
         function loadChat() {
           var oldscrollHeight = $("#chatbox").attr("scrollHeight") - 20; //Scroll height before the request
-          $.get("log.html", function(data) {
+          $.get("chat.html", function(data) {
             $("#chatbox").html(data);
             var newscrollHeight = $("#chatbox").attr("scrollHeight") - 20; //Scroll height after the request
       			if(newscrollHeight > oldscrollHeight){
